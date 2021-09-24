@@ -1,0 +1,6 @@
+.pio
+target
+CMakeFiles/
+Cargo.lock
+sdkconfig.debug
+sdkconfig.release

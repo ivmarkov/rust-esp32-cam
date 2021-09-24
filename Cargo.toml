@@ -1,0 +1,38 @@
+[package]
+name = "rust-esp32-cam"
+version = "0.1.0"
+authors = ["ivmarkov"]
+edition = "2018"
+categories = ["embedded", "hardware-support"]
+keywords = ["embedded", "svc", "idf", "esp-idf", "esp32"]
+description = "A demo binary crate for the ESP32-CAM board"
+repository = "https://github.com/ivmarkov/rust-esp32-cam"
+license = "MIT OR Apache-2.0"
+readme = "README.md"
+
+[lib]
+path = "src/lib.rs"
+name = "rust_esp32_cam"
+edition = "2018"
+crate-type = ["staticlib"]
+
+# No xtensa in regular compiler yet
+[package.metadata.docs.rs]
+default-target = "x86_64-unknown-linux-gnu"
+
+[profile.release]
+# symbols are nice and they don't increase the size on Flash
+debug = true
+opt-level = "z"
+
+[profile.dev]
+opt-level = "s"
+
+[features]
+bind = []
+
+[dependencies]
+anyhow = {version = "1", features = ["backtrace"]}
+log = "0.4"
+embedded-svc = "0.8.7"
+esp-idf-svc = { version = "0.20.1", features = ["libstart"] }
